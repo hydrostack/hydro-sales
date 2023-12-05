@@ -1,0 +1,33 @@
+@model CustomerList
+
+<table class="table table-sm">
+  <thead>
+  <tr>
+    <td>Customer name</td>
+    <td></td>
+  </tr>
+  </thead>
+  <tbody>
+  @foreach (var customer in await Model.Customers.Value)
+  {
+    <tr class="hover">
+      <td class="align-middle">
+        <a href="#" hydro-on:click="@(() => Model.Edit(customer.Id))" class="link link-hover">
+          @customer.Name
+          <span class="spinner-border spinner-border-sm spinner" aria-hidden="true"></span>
+        </a>
+      </td>
+      <td class="align-middle text-end">
+        @{
+          var menuItems = new TableDropdownItem[]
+          {
+            new("Edit", () => Model.Edit(customer.Id))
+          };
+        }
+
+        <partial name="TableDropdown" model="@menuItems"/>
+      </td>
+    </tr>
+  }
+  </tbody>
+</table>

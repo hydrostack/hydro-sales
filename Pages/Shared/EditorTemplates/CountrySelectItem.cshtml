@@ -1,0 +1,14 @@
+﻿@model SelectItem
+
+@{
+  var flagKey = Model.Key.ToLower();
+}
+
+<span>@Model.Text</span>
+<span class="text-xs opacity-50">@Model.Key</span>
+
+<img
+  src="https://flagcdn.com/h20/@(flagKey).png"
+  srcset="https://flagcdn.com/h40/@(flagKey).png 2x,
+        https://flagcdn.com/h60/@(flagKey).png 3x"
+  height="16" alt="@Model.Text" style="max-height: 12px">

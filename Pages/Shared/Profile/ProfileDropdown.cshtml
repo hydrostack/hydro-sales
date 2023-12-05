@@ -1,0 +1,25 @@
+@model ProfileDropdown
+
+<details>
+  <summary>
+    🙂
+  </summary>
+  <ul class="p-2 bg-base-800 rounded-t-none right-0 shadow-lg whitespace-nowrap">
+    @if (ViewBag.IsAuthenticated)
+    {
+      <li>
+        <a asp-page="/Invoices/Index" hydro-boost>Dashboard</a>
+      </li>
+    }
+
+    <li>
+      <a hydro-on:click="@(() => Model.SwitchTheme())" href="#">Light/dark theme</a>
+    </li>
+    @if (ViewBag.IsAuthenticated)
+    {
+      <li>
+        <a hydro-on:click="@(() => Model.Logout())" href="#">Log out</a>
+      </li>
+    }
+  </ul>
+</details>

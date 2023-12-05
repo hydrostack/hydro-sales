@@ -1,0 +1,47 @@
+@model AddInvoice
+
+<form class="flex flex-col flex-1" method="post" x-hydro-focus="@(Model.IsMount ? "input" : null)">
+  <div class="flex-1 overflow-y-auto">
+    <div class="p-4">
+      <div class="text-xl mb-3 font-bold">Add invoice</div>
+
+      <div class="flex space-x-12 mb-8">
+        <div class="flex-none w-72">
+          @Html.EditorFor(m => m.CustomerId, "CustomerSelect", new { autoFocus = true })
+
+          @if (Model.CustomerId != null)
+          {
+            <hydro name="CustomerFormInfo" param-id="@Model.CustomerId" key="@Model.CustomerId" />
+          }
+        </div>
+        <div class="flex-none w-36">
+          @Html.EditorFor(m => m.IssueDate)
+          @Html.EditorFor(m => m.PaymentTerms)
+        </div>
+        <div class="flex-none w-36">
+          @Html.EditorFor(m => m.CurrencyCode, "CurrencySelect")
+          @Html.EditorFor(m => m.DueDate)
+        </div>
+        <div class="flex-none w-72">
+          @Html.EditorFor(m => m.Remarks, new { rows = 3 })
+        </div>
+        <div class="flex-none w-72">
+          <partial name="../Common/InvoiceSummary.cshtml" />
+        </div>
+      </div>
+
+      <partial name="../Common/InvoiceLines.cshtml" />
+    </div>
+  </div>
+  <div class="flex p-4 gap-2">
+    <button class="btn btn-primary" type="submit" hydro-on:click="@(() => Model.Save())">
+      <span class="loading loading-spinner loading-sm spinner" aria-hidden="true"></span>
+      <span>Save changes</span>
+    </button>
+
+    <button type="button" class="btn btn-outline-secondary" hydro-on:click="@(() => Model.Back())">
+      <span class="loading loading-spinner loading-sm spinner" aria-hidden="true"></span>
+      Cancel
+    </button>
+  </div>
+</form>

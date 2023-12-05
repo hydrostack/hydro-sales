@@ -1,0 +1,9 @@
+@model CustomerFormInfo
+
+<div class="init-component bg-base-200/30 border border-base-content/20 rounded-lg p-2 text-sm shadow-sm">
+  <a href="@Url.Page("/Customers/Edit", new { Model.Id })">@Model.Name</a>
+  <div class="opacity-70">
+    <div>@Model.Address</div>
+    <div>@Model.City, @Model.Country</div>
+  </div>
+</div>

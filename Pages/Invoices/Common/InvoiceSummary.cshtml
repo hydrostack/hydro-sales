@@ -1,0 +1,23 @@
+@model IInvoiceSummaryModel
+
+<div class="form-control w-full">
+  <label class="label">
+    <span class="label-text">Summary (@Model.CurrencyCode)</span>
+  </label>
+  <div class="grid grid-cols-5 gap-2 bg-base-200/30 border border-base-content/20 rounded-lg p-2 text-sm shadow-sm">
+    @foreach (var taxGroup in Model.TaxGroups)
+    {
+      <div class="text-right col-span-3">
+        @(taxGroup.SalesTax == 0 ? "Subject to" : "Subject to tax")
+        @taxGroup.SalesTax.ToString("N2")
+      </div>
+      <div class="text-right col-span-2">@taxGroup.ValueNet.ToString("N2")</div>
+    }
+
+    <div class="text-right col-span-3">Total excl. tax</div>
+    <div class="text-right col-span-2">@Model.ValueNet.ToString("N2")</div>
+
+    <div class="text-right col-span-3 font-bold col-span-2">Total</div>
+    <div class="text-right col-span-2 font-bold">@Model.ValueGross.ToString("N2")</div>
+  </div>
+</div>

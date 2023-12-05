@@ -1,0 +1,54 @@
+@model InvoiceList
+
+<table class="table table-sm">
+  <thead>
+  <tr>
+    <th class="w-32">Invoice number</th>
+    <th class="w-28">Issue date</th>
+    <th>Customer</th>
+    <th class="w-28 text-right">Net value</th>
+    <th class="w-24">Currency</th>
+    <th class="w-12"></th>
+  </tr>
+  </thead>
+  <tbody>
+  @foreach (var invoice in await Model.Invoices.Value)
+  {
+    <tr class="hover">
+      <td>
+        <a href="#" hydro-on:click="@(() => Model.Edit(invoice.Id))" class="link link-hover flex">
+          @invoice.Number
+          <span class="loading loading-spinner loading-xs ml-1 spinner"></span>
+        </a>
+      </td>
+
+      <td>
+        @invoice.IssueDate.ToString("yyyy-MM-dd")
+      </td>
+
+      <td>
+        @invoice.CustomerName
+      </td>
+
+      <td class="text-right">
+        @($"{invoice.ValueNet:N2}")
+      </td>
+
+      <td>
+        @invoice.CurrencyCode
+      </td>
+
+      <td class="align-middle text-end">
+        @{
+          var menuItems = new TableDropdownItem[]
+          {
+            new("Edit", () => Model.Edit(invoice.Id))
+          };
+        }
+
+        <partial name="TableDropdown" model="@menuItems" />
+      </td>
+    </tr>
+  }
+  </tbody>
+</table>

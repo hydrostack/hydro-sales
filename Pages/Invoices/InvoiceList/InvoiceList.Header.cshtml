@@ -1,0 +1,8 @@
+@model InvoiceList
+
+<div class="flex justify-end mb-4">
+  <button class="btn btn-primary" hydro-on:click="@(() => Model.Add())">
+    <span class="loading loading-spinner loading-sm spinner" aria-hidden="true"></span>
+    Add invoice
+  </button>
+</div>

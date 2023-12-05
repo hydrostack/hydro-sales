@@ -1,0 +1,16 @@
+@model InvoiceList
+
+<div class="flex flex-col flex-1 p-4">
+  <partial name="InvoiceList.Header.cshtml"/>
+
+  @if (!(await Model.Invoices.Value).Any())
+  {
+    <div class="bg-base-200 rounded text-center p-4">
+      <h6>No invoices to show</h6>
+    </div>
+  }
+  else
+  {
+    <partial name="InvoiceList.Table.cshtml"/>
+  }
+</div>

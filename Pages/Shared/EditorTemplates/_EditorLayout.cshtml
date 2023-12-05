@@ -1,0 +1,30 @@
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+  var label = ViewData["label"] as string ?? ViewData.ModelMetadata.DisplayName;
+  var isShort = ViewData["short"] is true;
+  var name = Html.Name("");
+  var error = ViewData.ModelState.TryGetValue(name, out var state) && state.Errors.Any()
+    ? state.Errors[0].ErrorMessage
+    : null;
+}
+
+<div class="form-control w-full @(isShort ? "short" : null)">
+  <label class="label">
+    <span class="label-text">@label</span>
+  </label>
+
+  @RenderBody()
+
+  <label class="label h-4 max-h-4 p-0 pt-[3px]">
+    @if (error != null)
+    {
+      <span class="init-10 label-text-alt invalid-feedback text-error relative min-h-[1rem] w-full -z-10">
+        <span
+          asp-validation-for="@Model"
+          title="@error"
+          class="absolute left-0 right-0 top-0 whitespace-nowrap overflow-ellipsis overflow-hidden">
+        </span>
+      </span>
+    }
+  </label>
+</div>

@@ -1,0 +1,45 @@
+﻿@{
+  var page = ViewContext.RouteData.Values["page"]?.ToString() ?? string.Empty;
+  Layout = "_LayoutBase";
+}
+
+@{
+  string GetCurrentPageClass(string prefix) =>
+    page.StartsWith($"/{prefix}")
+      ? "btn btn-sm btn-neutral btn-active"
+      : "btn btn-sm btn-ghost";
+
+  async Task RenderItem(string title, string name)
+  {
+    <a asp-page="/@name/Index" class="@GetCurrentPageClass(name)">
+      <partial name="Loading"/>
+      @title
+    </a>
+  }
+}
+
+<div class="flex flex-col w-full h-full">
+  <div class="navbar bg-base-100 shadow-xl z-[100]">
+    <div class="flex-none">
+      <a class="btn btn-ghost text-xl no-animation" href="/">Hydro Sales</a>
+    </div>
+    <div class="flex-1 flex gap-2" hydro-link>
+      @{
+        await RenderItem("Invoices", "Invoices");
+        await RenderItem("Products", "Products");
+        await RenderItem("Customers", "Customers");
+      }
+    </div>
+    <div class="flex-none">
+      <ul class="menu menu-horizontal">
+        <li>
+          <hydro name="ProfileDropdown" />
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <main class="flex flex-1 overflow-hidden">
+    @RenderBody()
+  </main>
+</div>

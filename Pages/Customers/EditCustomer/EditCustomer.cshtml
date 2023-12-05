@@ -1,0 +1,46 @@
+@model EditCustomer
+
+<form class="flex flex-col flex-1" method="post">
+  <div class="flex-1 overflow-y-auto">
+    <div class="p-4">
+      <div class="text-xl mb-3 font-bold">Edit customer @Model.InitialName</div>
+
+      <div class="flex space-x-12 h-80">
+        <div class="flex-none w-80">
+          <editor for="Name" view-data-autoFocus="@true" />
+          <editor for="TaxId" />
+          <editor for="CurrencyCode" template-name="CurrencySelect" />
+          <editor for="PaymentTerms" />
+        </div>
+        <div class="flex-none w-80">
+          <editor for="Address" view-data-rows="2" />
+
+          <div class="flex space-x-4">
+            <editor for="City" />
+            <editor for="CountryCode" template-name="CountrySelect" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="flex p-4 gap-2">
+    <button class="btn btn-primary" type="submit" hydro-on:click="@(() => Model.Save())">
+      <span class="loading loading-spinner loading-sm spinner" aria-hidden="true"></span>
+      <span>Save changes</span>
+    </button>
+
+    <button type="button" class="btn btn-outline-secondary" hydro-on:click="@(() => Model.Back())">
+      <span class="loading loading-spinner loading-sm spinner" aria-hidden="true"></span>
+      Cancel
+    </button>
+
+    <div class="dropdown dropdown-top">
+      <div tabindex="0" class="btn btn-ghost">Remove</div>
+      <ul tabindex="0" class="p-2 shadow menu menu-sm dropdown-content z-[1] bg-base-100 border border-base-200 rounded">
+        <li>
+          <a href="#" hydro-on:click="@(() => Model.Remove())">Confirm</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</form>

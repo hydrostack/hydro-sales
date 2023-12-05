@@ -1,0 +1,10 @@
+﻿@using System.Globalization
+@model SelectItem
+
+@{
+  var metadata = (ProductSelectList.ProductMetadata)Model.Metadata;
+}
+
+<span class="truncate">@Model.Text</span>
+<span></span>
+<span class="text-xs opacity-50">@metadata.PriceNet.ToString("#,##0.00", CultureInfo.InvariantCulture)</span>

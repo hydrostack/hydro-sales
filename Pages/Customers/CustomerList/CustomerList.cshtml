@@ -1,0 +1,16 @@
+@model CustomerList
+
+<div class="flex flex-col flex-1 p-4">
+  <partial name="CustomerList.Header.cshtml"/>
+
+  @if (!(await Model.Customers.Value).Any())
+  {
+    <div class="bg-base-200 rounded text-center p-4">
+      <h6>No customers to show</h6>
+    </div>
+  }
+  else
+  {
+    <partial name="CustomerList.Table.cshtml"/>
+  }
+</div>

@@ -1,0 +1,19 @@
+@using Microsoft.AspNetCore.Mvc.ModelBinding
+@model DateTime?
+
+@{
+  Layout = "_EditorLayout.cshtml";
+
+  var required = ViewData.ModelMetadata.IsRequired;
+  var isAutoFocus = ViewData["autoFocus"] is true;
+  var name = Html.Name("");
+  var isInvalid = ViewData.ModelState.GetFieldValidationState(name) == ModelValidationState.Invalid;
+}
+
+<input
+  autofocus="@(isAutoFocus ? "autofocus" : null)"
+  onfocus="this.select()"
+  asp-for="@Model"
+  type="date"
+  hydro-bind
+  class="shadow-sm input input-sm input-bordered w-full @(isInvalid ? "input-error" : null)" />

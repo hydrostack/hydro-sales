@@ -1,0 +1,111 @@
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.shake {
+  animation: shake 0.3s;
+  animation-timing-function: ease-in-out;
+}
+
+.init {
+  animation: scaleAnimation 0.2s ease-out forwards;
+}
+
+.init-10 {
+  animation: scaleAnimation10 0.15s ease-in-out forwards;
+}
+
+.init-component {
+  animation: scaleAnimationSmall 0.15s ease-out forwards;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-10px);
+  }
+  50% {
+    transform: translateX(10px);
+  }
+  75% {
+    transform: translateX(-10px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleAnimation {
+  0% {
+    transform: translateY(-50px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleAnimation10 {
+  0% {
+    transform: translateY(-1rem);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleAnimationSmall {
+  0% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.menu details ul li a {
+  white-space: nowrap;
+}
+
+details[open] > summary::before {
+  content: ' ';
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 99;
+  display: block;
+  cursor: default;
+  background: transparent;
+}
+
+details[open] > summary + * {
+  z-index: 100;
+}
+
+.spinner {
+  display: none !important;
+}
+
+.hydro-request .spinner {
+  display: inline-block !important;
+}
+
+.hydro-request .hide-on-request {
+  display: none;
+}
+
+[type=submit] {
+  background-color: oklch(var(--btn-color, var(--b2)) / var(--tw-bg-opacity)) !important;
+}
+
+/*.btn-outline:hover {*/
+/*  background-color: var(--fallback-bc, oklch(var(--bc)/var(--tw-bg-opacity))) !important;*/
+/*}*/

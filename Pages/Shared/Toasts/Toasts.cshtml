@@ -1,0 +1,22 @@
+@model Toasts
+
+<div class="flex flex-col fixed align-items-center justify-content-center px-4 w-full left-0 bottom-0 mb-3">
+  @for (var index = 0; index < Model.ToastsList.Count; index++)
+  {
+    var toast = Model.ToastsList[index];
+    var typeClass = toast.Type switch
+    {
+      ToastType.Success => "alert-success text-slate-100",
+      ToastType.Error => "alert-error",
+      _ => "text-bg-primary"
+      };
+
+    <div key="@($"toast-{index}")" class="alert init @typeClass w-auto mx-auto shadow-lg mb-2 p-1" role="alert" aria-live="assertive" aria-atomic="true">
+      <div></div>
+      <span class="text-sm">
+        @toast.Message
+      </span>
+      <button type="button" class="btn btn-sm btn-circle btn-ghost" aria-label="Close" hydro-on:click="@(() => Model.Close(toast.Id))" x-init="@DateTime.Now.Ticks; setTimeout(() => $el.click(), 5000)">✕</button>
+    </div>
+  }
+</div>

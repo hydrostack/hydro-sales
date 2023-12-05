@@ -1,0 +1,49 @@
+@model ProductList
+
+<table class="table table-sm">
+  <thead>
+  <tr>
+    <th>Product name</th>
+    <th class="w-40">Product code</th>
+    <th class="w-28 text-right">Price</th>
+    <th class="w-24">Currency</th>
+    <th class="w-12"></th>
+  </tr>
+  </thead>
+  <tbody>
+  @foreach (var product in await Model.Products.Value)
+  {
+    <tr class="hover">
+      <td>
+        <a href="#" hydro-on:click="@(() => Model.Edit(product.Id))" class="link link-hover">
+          @product.Name
+          <span class="spinner-border spinner-border-sm spinner" aria-hidden="true"></span>
+        </a>
+      </td>
+
+      <td>
+        @product.Code
+      </td>
+
+      <td class="text-right">
+        @($"{product.PriceNet:F}")
+      </td>
+
+      <td>
+        @product.CurrencyCode
+      </td>
+
+      <td class="align-middle text-end">
+        @{
+          var menuItems = new TableDropdownItem[]
+          {
+            new("Edit", () => Model.Edit(product.Id))
+          };
+        }
+
+        <partial name="TableDropdown" model="@menuItems" />
+      </td>
+    </tr>
+  }
+  </tbody>
+</table>

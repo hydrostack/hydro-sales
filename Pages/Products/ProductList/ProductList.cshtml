@@ -1,0 +1,16 @@
+@model ProductList
+
+<div class="flex flex-col flex-1 p-4">
+  <partial name="ProductList.Header.cshtml"/>
+
+  @if (!(await Model.Products.Value).Any())
+  {
+    <div class="bg-base-200 rounded text-center p-4">
+      <h6>No products to show</h6>
+    </div>
+  }
+  else
+  {
+    <partial name="ProductList.Table.cshtml"/>
+  }
+</div>

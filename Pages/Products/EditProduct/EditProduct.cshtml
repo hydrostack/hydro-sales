@@ -1,0 +1,37 @@
+@model EditProduct
+
+<form class="flex flex-col flex-1 p-4" method="post">
+  <div class="flex-1 overflow-y-auto p-1">
+    <div class="text-xl mb-3 font-bold">Edit product @Model.InitialName</div>
+
+    <div class="flex space-x-12 h-80">
+      <div class="flex-none w-80">
+        <editor for="Name" view-data-autoFocus="@true" />
+        <editor for="Code" />
+        <editor for="CurrencyCode" template-name="CurrencySelect" />
+        <editor for="PriceNet" />
+        <editor for="SalesTax" />
+      </div>
+    </div>
+  </div>
+  <div class="flex p-1 gap-2">
+    <button class="btn btn-primary" type="submit" hydro-on:click="@(() => Model.Save())">
+      <span class="loading loading-spinner loading-sm spinner" aria-hidden="true"></span>
+      <span>Save changes</span>
+    </button>
+
+    <button type="button" class="btn btn-outline-secondary" hydro-on:click="@(() => Model.Back())">
+      <span class="loading loading-spinner loading-sm spinner" aria-hidden="true"></span>
+      Cancel
+    </button>
+
+    <div class="dropdown dropdown-top">
+      <div tabindex="0" class="btn btn-ghost">Remove</div>
+      <ul tabindex="0" class="p-2 shadow menu menu-sm dropdown-content z-[1] bg-base-100 border border-base-200 rounded">
+        <li>
+          <a href="#" hydro-on:click="@(() => Model.Remove())">Confirm</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</form>

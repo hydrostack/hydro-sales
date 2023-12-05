@@ -1,0 +1,74 @@
+@model IInvoiceLinesModel
+
+@if (Model.Lines.Any())
+{
+  <table class="table table-xs">
+    <thead class="bg-base-100 z-50">
+    <tr>
+      <th>@Html.DisplayNameFor(m => m.Lines[0].ProductId)</th>
+      <th class="w-28 text-right">@Html.DisplayNameFor(m => m.Lines[0].UnitPriceNet)</th>
+      <th class="w-32">@Html.DisplayNameFor(m => m.Lines[0].CurrencyCode)</th>
+      <th class="w-24 text-right">@Html.DisplayNameFor(m => m.Lines[0].Quantity)</th>
+      <th class="w-24">@Html.DisplayNameFor(m => m.Lines[0].Unit)</th>
+      <th class="w-28 text-right">@Html.DisplayNameFor(m => m.Lines[0].BaseValueNet)</th>
+      <th class="w-28 text-right">@Html.DisplayNameFor(m => m.Lines[0].ValueNet) (@Model.CurrencyCode)</th>
+      <th class="w-24 text-right">@Html.DisplayNameFor(m => m.Lines[0].SalesTax)</th>
+      <th class="w-28 text-right">@Html.DisplayNameFor(m => m.Lines[0].ValueGross) (@Model.CurrencyCode)</th>
+      <th class="w-8"></th>
+    </tr>
+    </thead>
+    <tbody>
+    @for (var index = 0; index < Model.Lines.Count; index++)
+    {
+      var focus = Model.FocusLastLine && index == Model.Lines.Count - 1;
+
+      <tr class="hover @(focus ? "init" : null)" x-hydro-focus="@(focus ? "input" : null)">
+        <td>
+          @Html.EditorFor(m => m.Lines[index].ProductId, "ProductSelect", new { label = "" })
+        </td>
+        <td>
+          @Html.EditorFor(m => m.Lines[index].UnitPriceNet, new { label = "", align = "right" })
+        </td>
+        <td class="">
+          @Html.EditorFor(m => m.Lines[index].CurrencyCode, "CurrencySelect", new { label = "" })
+        </td>
+        <td>
+          @Html.EditorFor(m => m.Lines[index].Quantity, new { label = "", align = "right" })
+        </td>
+        <td>
+          @Html.EditorFor(m => m.Lines[index].Unit, new { label = "" })
+        </td>
+        <td class="text-right">
+          @Model.Lines[index].BaseValueNet.ToString("#,##0.00") @Model.Lines[index].CurrencyCode
+        </td>
+        <td class="text-right">
+          @Model.Lines[index].ValueNet.ToString("#,##0.00")
+        </td>
+        <td>
+          @Html.EditorFor(m => m.Lines[index].SalesTax, new { label = "", align = "right" })
+        </td>
+        <td class="text-right">
+          @Model.Lines[index].ValueGross.ToString("#,##0.00")
+        </td>
+        <td class="align-middle text-end">
+          <button
+            type="button"
+            hydro-on:click="@(() => Model.RemoveLine(index))"
+            class="btn btn-outline btn-xs h-8 border-base-content/20">
+            <partial name="Icons/CrossIcon" />
+          </button>
+        </td>
+      </tr>
+    }
+    </tbody>
+  </table>
+}
+
+<div class="my-4 pb-32">
+  <button
+    type="button"
+    hydro-on:click="@(() => Model.AddLine())"
+    class="btn">
+    Add line
+  </button>
+</div>

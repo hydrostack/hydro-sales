@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="@(Context.Request.Cookies.TryGetValue("theme", out var value) ? value : "light")">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="hydro-config"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>@ViewData["Title"] - HydroSales</title>
+  <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
+
+  <script src="~/hydro.js" asp-append-version="true"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/@@alpinejs/morph@3.x.x/dist/cdn.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.x.x/dist/full.min.css" rel="stylesheet" type="text/css"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+
+@RenderBody()
+
+<hydro name="Dialogs"/>
+<hydro name="Toasts"/>
+
+</body>
+</html>

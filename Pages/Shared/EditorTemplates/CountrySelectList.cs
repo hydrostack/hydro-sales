@@ -1,7 +1,9 @@
+using HydroSales.Authorization;
 using HydroSales.Domain;
 
 namespace HydroSales.Pages.Shared.EditorTemplates;
 
+[ComponentAuthorize]
 public class CountrySelectList : DynamicSelect
 {
     public override string ItemPartial => GetViewPath("CountrySelectItem");

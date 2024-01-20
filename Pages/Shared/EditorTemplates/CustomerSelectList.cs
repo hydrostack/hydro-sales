@@ -1,9 +1,11 @@
+using HydroSales.Authorization;
 using HydroSales.Database;
 using HydroSales.Domain;
 using Microsoft.EntityFrameworkCore;
 
 namespace HydroSales.Pages.Shared.EditorTemplates;
 
+[ComponentAuthorize]
 public class CustomerSelectList(IDatabase database) : DynamicSelect
 {
     public override string ItemPartial => GetViewPath("CustomerSelectItem");

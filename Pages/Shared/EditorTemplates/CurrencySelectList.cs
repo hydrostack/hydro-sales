@@ -1,7 +1,9 @@
+using HydroSales.Authorization;
 using HydroSales.Domain;
 
 namespace HydroSales.Pages.Shared.EditorTemplates;
 
+[ComponentAuthorize]
 public class CurrencySelectList : DynamicSelect
 {
     protected override IReadOnlyList<SelectItem> GetItems() =>

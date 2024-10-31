@@ -5,7 +5,7 @@
   <ul tabindex="0" class="p-2 shadow menu menu-xs dropdown-content z-[1] bg-base-100 border border-base-200 rounded">
     @foreach (var item in Model)
     {
-      <li><a href="#" hydro-on:click="@item.Action">@item.Text</a></li>
+      <li><a href="#" on:click="@item.Action">@item.Text</a></li>
     }
   </ul>
 </div>

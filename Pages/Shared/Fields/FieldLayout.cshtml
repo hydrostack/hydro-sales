@@ -1,0 +1,20 @@
+@model FieldLayout
+
+<div class="form-control w-full">
+  <label class="label">
+    <span class="label-text">@Model.Label</span>
+  </label>
+
+  @Model.Slot()
+
+  <label class="label h-4 max-h-4 p-0 pt-[3px]">
+    @if (!string.IsNullOrWhiteSpace(Model.Error))
+    {
+      <span class="init-10 label-text-alt invalid-feedback text-error relative min-h-[1rem] w-full -z-10">
+        <span class="absolute left-0 right-0 top-0 whitespace-nowrap overflow-ellipsis overflow-hidden">
+          @Model.Error
+        </span>
+      </span>
+    }
+  </label>
+</div>

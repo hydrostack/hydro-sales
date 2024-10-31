@@ -20,10 +20,10 @@ public class AddProduct(IDatabase database) : HydroComponent
     [Display(Name = "Code"), Required, MaxLength(50)]
     public string Code { get; set; }
 
-    [Display(Name = "Price"), Required, Range(0, double.PositiveInfinity, MinimumIsExclusive = true)]
+    [Display(Name = "Price"), Required, Range(0, double.PositiveInfinity)]
     public decimal PriceNet { get; set; }
 
-    [Display(Name = "Sales tax (VAT)"), Required, Range(0, 100, MaximumIsExclusive = true)]
+    [Display(Name = "Sales tax (VAT)"), Required, Range(0, 100)]
     public decimal SalesTax { get; set; }
 
     [Display(Name = "Currency"), Required]
@@ -31,6 +31,7 @@ public class AddProduct(IDatabase database) : HydroComponent
 
     public override async Task MountAsync()
     {
+        
         var userSettings = await database.Query<UserSettings>().SingleAsync();
         
         CurrencyCode = userSettings.DefaultCurrencyCode;
@@ -69,5 +70,12 @@ public class AddProduct(IDatabase database) : HydroComponent
             RuleFor(c => c.CurrencyCode).NotEmpty();
             RuleFor(c => c.Name).NotEmpty();
         }
+    }
+
+    public int Aaa { get; set; }
+
+    public void DoSomething()
+    {
+        Aaa++;
     }
 }

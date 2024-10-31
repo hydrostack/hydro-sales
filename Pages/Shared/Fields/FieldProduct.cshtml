@@ -1,0 +1,17 @@
+﻿@model FieldProduct
+
+@{
+  var field = Model.Field.GetInfo(Model.ModelState, Model.Label);
+  var value = field.Value ?? "";
+}
+
+<field-layout name="@field.Name" label="@field.Label" error="@field.Error">
+
+  <product-select-list
+    name="@field.Name"
+    value="@value"
+    placeholder="Name or code"
+    key="@($"{field.Name}_{value}")"
+    key-behavior="Morph" />
+
+</field-layout>

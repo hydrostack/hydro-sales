@@ -1,8 +1,9 @@
+@using Hydro
 @model Dialogs
 
 <div>
   @foreach (var (name, data) in Model.DialogsDictionary)
   {
-    @await Component.InvokeAsync(name, new { parameters = new { DialogData = data } })
+    @await Html.Hydro(name, new { DialogData = data })
   }
 </div>

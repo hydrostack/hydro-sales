@@ -1,4 +1,4 @@
-@model IInvoiceLinesModel
+@model InvoiceLines
 
 @if (Model.Lines.Any())
 {
@@ -24,19 +24,19 @@
 
       <tr class="hover @(focus ? "init" : null)" x-hydro-focus="@(focus ? "input" : null)">
         <td>
-          @Html.EditorFor(m => m.Lines[index].ProductId, "ProductSelect", new { label = "" })
+          <field-product field="Lines[index].ProductId" label="" />
         </td>
         <td>
-          @Html.EditorFor(m => m.Lines[index].UnitPriceNet, new { label = "", align = "right" })
+          <field-number field="Lines[index].UnitPriceNet" label="" align="right" />
         </td>
         <td class="">
-          @Html.EditorFor(m => m.Lines[index].CurrencyCode, "CurrencySelect", new { label = "" })
+          <field-currency field="Lines[index].CurrencyCode" label="" />
         </td>
         <td>
-          @Html.EditorFor(m => m.Lines[index].Quantity, new { label = "", align = "right" })
+          <field-text field="Lines[index].Quantity" align="right" label="" />
         </td>
         <td>
-          @Html.EditorFor(m => m.Lines[index].Unit, new { label = "" })
+          <field-text field="Lines[index].Unit" align="right" label="" />
         </td>
         <td class="text-right">
           @Model.Lines[index].BaseValueNet.ToString("#,##0.00") @Model.Lines[index].CurrencyCode
@@ -45,7 +45,7 @@
           @Model.Lines[index].ValueNet.ToString("#,##0.00")
         </td>
         <td>
-          @Html.EditorFor(m => m.Lines[index].SalesTax, new { label = "", align = "right" })
+          <field-number field="Lines[index].SalesTax" align="right" label="" />
         </td>
         <td class="text-right">
           @Model.Lines[index].ValueGross.ToString("#,##0.00")
@@ -53,7 +53,7 @@
         <td class="align-middle text-end">
           <button
             type="button"
-            hydro-on:click="@(() => Model.RemoveLine(index))"
+            on:click="@(() => Model.InvoiceActions.RemoveLine(index))"
             class="btn btn-outline btn-xs h-8 border-base-content/20">
             <partial name="Icons/CrossIcon" />
           </button>
@@ -67,7 +67,7 @@
 <div class="my-4 pb-32">
   <button
     type="button"
-    hydro-on:click="@(() => Model.AddLine())"
+    on:click="@(() => Model.InvoiceActions.AddLine())"
     class="btn">
     Add line
   </button>

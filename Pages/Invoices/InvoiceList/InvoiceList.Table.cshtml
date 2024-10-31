@@ -16,7 +16,7 @@
   {
     <tr class="hover">
       <td>
-        <a href="#" hydro-on:click="@(() => Model.Edit(invoice.Id))" class="link link-hover flex">
+        <a href="#" on:click="@(() => Model.Edit(invoice.Id))" class="link link-hover flex">
           @invoice.Number
           <span class="loading loading-spinner loading-xs ml-1 spinner"></span>
         </a>

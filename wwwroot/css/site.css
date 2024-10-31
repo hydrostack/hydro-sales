@@ -94,7 +94,7 @@ details[open] > summary + * {
   display: none !important;
 }
 
-.hydro-request .spinner {
+.hydro-request > .spinner {
   display: inline-block !important;
 }
 

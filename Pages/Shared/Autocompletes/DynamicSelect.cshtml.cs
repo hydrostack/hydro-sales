@@ -1,7 +1,7 @@
 using Hydro;
 using Hydro.Utils;
 
-namespace HydroSales.Pages.Shared.EditorTemplates;
+namespace HydroSales.Pages.Shared.Autocompletes;
 
 public abstract class DynamicSelect : HydroComponent
 {

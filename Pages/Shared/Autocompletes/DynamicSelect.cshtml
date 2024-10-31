@@ -16,8 +16,8 @@
       placeholder="@Model.Placeholder"
       autocomplete="off"
 
-      hydro-bind:input.debounce.500ms
-      hydro-on:blur="@(() => Model.Blur())"
+      bind:input.debounce.500ms
+      on:blur="@(() => Model.Blur())"
 
       x-ref="input"
       x-on:focus="$el.select()"
@@ -32,7 +32,7 @@
       <button
         tabindex="-1"
         type="button"
-        hydro-on:click="@(() => Model.Clear())"
+        on:click="@(() => Model.Clear())"
         class="btn btn-outline btn-sm join-item border-l-base-100 border-base-content/20 px-0 hidden group-hover:block">
         <partial name="Icons/CrossIcon" />
       </button>
@@ -41,7 +41,7 @@
     <div class="relative" onmousedown="event.preventDefault()">
       <button
         type="button"
-        hydro-on:click="@(() => Model.Open())"
+        on:click="@(() => Model.Open())"
         tabindex="-1"
         x-ref="open"
         x-on:mousedown="$refs.input.focus();$refs.input.select();"
@@ -56,14 +56,14 @@
         if (items.Count != 0)
         {
           <div class="hidden group-focus-within:block">
-            <div hydro-on:click="@(() => Model.Close())" x-ref="back" class="fixed left-0 top-0 bottom-0 right-0"></div>
+            <div on:click="@(() => Model.Close())" x-ref="back" class="fixed left-0 top-0 bottom-0 right-0"></div>
             <ul class="init-component absolute menu menu-sm p-0 bg-base-100 rounded w-72 max-h-40 border border-base-300 shadow overflow-y-auto flex-nowrap right-0 z-50" x-init="$el.scrollIntoViewIfNeeded(false)">
               @for (var i = 0; i < items.Count; i++)
               {
                 <li>
                   <a
                     tabindex="-1"
-                    hydro-on:click="@(() => Model.Select(items[i].Key))"
+                    on:click="@(() => Model.Select(items[i].Key))"
                     x-ref="@i"
                     :class="{ 'bg-base-200': index === @i }"
                     x-effect="index === @i && $el.scrollIntoViewIfNeeded(false)"

@@ -12,10 +12,10 @@ public class InvoiceLineModel
     [Display(Name = "Currency"), Required]
     public string CurrencyCode { get; set; }
 
-    [Display(Name = "Tax (% VAT)"), Required, Range(0, 100, MaximumIsExclusive = true)]
+    [Display(Name = "Tax (% VAT)"), Required, Range(0, 100)]
     public decimal SalesTax { get; set; }
     
-    [Display(Name = "Unit price"), Required, Range(0, double.PositiveInfinity, MinimumIsExclusive = true)]
+    [Display(Name = "Unit price"), Required, Range(0, double.PositiveInfinity)]
     public decimal UnitPriceNet { get; set; }
 
     [Display(Name = "Qty"), Required]

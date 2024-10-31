@@ -16,7 +16,7 @@ using static HydroSales.Utils.Calculator;
 namespace HydroSales.Pages.Invoices.AddInvoice;
 
 [ComponentAuthorize]
-public class AddInvoice(IDatabase database) : HydroComponent, IInvoiceLinesModel, IInvoiceSummaryModel
+public class AddInvoice(IDatabase database) : HydroComponent, IInvoiceActions
 {
     [Display(Name = "Customer"), Required]
     public string CustomerId { get; set; }

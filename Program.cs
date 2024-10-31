@@ -62,7 +62,6 @@ services.AddResponseCompression(options => options.EnableForHttps = true);
 builder.Services.Configure<BrotliCompressionProviderOptions>(options => options.Level = CompressionLevel.Optimal);
 builder.Services.Configure<GzipCompressionProviderOptions>(options => options.Level = CompressionLevel.Optimal);
 
-services.AddScoped<ICookieStorageProvider, CookieStorageProvider>();
 services.AddScoped<IAuthorizationService, WebAuthorizationService>();
 services.AddScoped<IMembershipService, MembershipService>();
 services.AddDbContext<DatabaseContext>(context => context.UseSqlite(appSettings.DatabaseConnectionString));

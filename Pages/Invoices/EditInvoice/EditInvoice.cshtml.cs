@@ -16,7 +16,7 @@ using static HydroSales.Utils.Calculator;
 namespace HydroSales.Pages.Invoices.EditInvoice;
 
 [ComponentAuthorize]
-public class EditInvoice(IDatabase database) : HydroComponent, IInvoiceLinesModel, IInvoiceSummaryModel
+public class EditInvoice(IDatabase database) : HydroComponent, IInvoiceActions
 {
     [Required]
     public string Id { get; set; }

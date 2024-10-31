@@ -8,17 +8,17 @@
     @if (ViewBag.IsAuthenticated)
     {
       <li>
-        <a asp-page="/Invoices/Index" hydro-boost>Dashboard</a>
+        <a asp-page="/Invoices/Index" hydro-link>Dashboard</a>
       </li>
     }
 
     <li>
-      <a hydro-on:click="@(() => Model.SwitchTheme())" href="#">Light/dark theme</a>
+      <a on:click="@(() => Model.SwitchTheme())" href="#">Light/dark theme</a>
     </li>
     @if (ViewBag.IsAuthenticated)
     {
       <li>
-        <a hydro-on:click="@(() => Model.Logout())" href="#">Log out</a>
+        <a on:click="@(() => Model.Logout())" href="#">Log out</a>
       </li>
     }
   </ul>

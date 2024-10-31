@@ -1,0 +1,17 @@
+@model DialogView
+
+<dialog class="modal modal-open">
+  <div class="modal-box">
+    <h3 class="font-bold text-lg">
+      @Model.Slot("title")
+    </h3>
+    <p class="py-4">
+      @Model.Slot()
+    </p>
+    <div class="modal-action">
+      <button type="button" class="btn" on:click="@Model.OnClose">
+        Close
+      </button>
+    </div>
+  </div>
+</dialog>

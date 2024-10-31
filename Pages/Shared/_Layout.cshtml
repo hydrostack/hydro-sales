@@ -11,8 +11,8 @@
 
   async Task RenderItem(string title, string name)
   {
-    <a asp-page="/@name/Index" class="@GetCurrentPageClass(name)">
-      <partial name="Loading"/>
+    <a asp-page="@($"/{name}/Index")" class="@GetCurrentPageClass(name)">
+      <partial name="Loading" />
       @title
     </a>
   }
@@ -33,7 +33,7 @@
     <div class="flex-none">
       <ul class="menu menu-horizontal">
         <li>
-          <hydro name="ProfileDropdown" />
+          <profile-dropdown />
         </li>
       </ul>
     </div>

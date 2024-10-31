@@ -1,7 +1,7 @@
 using HydroSales.Authorization;
 using HydroSales.Domain;
 
-namespace HydroSales.Pages.Shared.EditorTemplates;
+namespace HydroSales.Pages.Shared.Autocompletes;
 
 [ComponentAuthorize]
 public class CountrySelectList : DynamicSelect

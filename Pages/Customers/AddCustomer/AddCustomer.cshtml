@@ -4,35 +4,35 @@
   ViewData.Add("context", "form");
 }
 
-<form class="flex flex-col flex-1 p-4" method="post">
+<form class="flex flex-col flex-1 p-4">
 
   <div class="flex-1 overflow-y-auto p-1">
     <div class="text-xl mb-3 font-bold">Add customer</div>
     
     <div class="flex space-x-12 h-80">
       <div class="flex-none w-80">
-        <editor for="Name" view-data-autoFocus="@true" />
-        <editor for="TaxId" />
-        <editor for="CurrencyCode" template-name="CurrencySelect" />
-        <editor for="PaymentTerms" />
+        <field-text field="Name" auto-focus />
+        <field-text field="TaxId" />
+        <field-currency field="CurrencyCode"/>
+        <field-text field="PaymentTerms" />
       </div>
       <div class="flex-none w-80">
-        <editor for="Address" view-data-rows="2" />
+        <field-text field="Address" rows="2" />
         
         <div class="flex space-x-4">
-          <editor for="City" />
-          <editor for="CountryCode" template-name="CountrySelect" />
+          <field-text field="City" />
+          <field-country field="CountryCode"/>
         </div>
       </div>
     </div>
   </div>
   <div class="flex p-1 gap-2">
-    <button class="btn btn-primary" type="submit" hydro-on:click="@(() => Model.Save())">
+    <button class="btn btn-primary" type="submit" on:click="@(() => Model.Save())">
       <span class="loading loading-spinner loading-sm spinner" aria-hidden="true"></span>
       <span>Save changes</span>
     </button>
 
-    <button type="button" class="btn btn-outline-secondary" hydro-on:click="@(() => Model.Back())">
+    <button type="button" class="btn btn-outline-secondary" on:click="@(() => Model.Back())">
       <span class="loading loading-spinner loading-sm spinner" aria-hidden="true"></span>
       Cancel
     </button>

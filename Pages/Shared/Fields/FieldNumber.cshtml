@@ -1,0 +1,28 @@
+@model FieldNumber
+
+@{
+  var field = Model.Field.GetInfo(Model.ModelState, Model.Label);
+  var value = $"{field.Value:F2}";
+  var styling = "";
+
+  if (Model.Align == "right")
+  {
+    styling += "text-right";
+  }
+}
+
+<field-layout name="@field.Name" label="@field.Label" error="@field.Error">
+  
+  <input
+    autofocus="@(Model.AutoFocus ? "autofocus" : null)"
+    autocomplete="off"
+    onfocus="this.select()"
+    name="@field.Name"
+    value="@value"
+    type="text"
+    x-on:keydown="$event.key === ',' && $event.preventDefault()"
+    x-on:change="$el.value = (isNaN($el.value) ? 0 : parseFloat($el.value)).toFixed(2)"
+    bind
+    class="shadow-sm input input-sm input-bordered w-full @(!field.IsValid ? "input-error" : null) @styling" />
+  
+</field-layout>

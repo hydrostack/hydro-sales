@@ -16,7 +16,7 @@
       <span class="text-sm">
         @toast.Message
       </span>
-      <button type="button" class="btn btn-sm btn-circle btn-ghost" aria-label="Close" hydro-on:click="@(() => Model.Close(toast.Id))" x-init="@DateTime.Now.Ticks; setTimeout(() => $el.click(), 5000)">✕</button>
+      <button type="button" class="btn btn-sm btn-circle btn-ghost" aria-label="Close" on:click="@(() => Model.Close(toast.Id))" x-init="@DateTime.Now.Ticks; setTimeout(() => $el.click(), 5000)">✕</button>
     </div>
   }
 </div>

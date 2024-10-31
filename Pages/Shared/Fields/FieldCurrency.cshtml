@@ -1,0 +1,16 @@
+@model FieldCurrency
+
+@{
+  var field = Model.Field.GetInfo(Model.ModelState, Model.Label);
+}
+
+<field-layout name="@field.Name" label="@field.Label" error="@field.Error">
+
+  <currency-select-list
+    name="@field.Name"
+    value="@field.Value"
+    placeholder="Code"
+    key="@($"{field.Name}_{field.Value}")"
+    key-behavior="Morph" />
+
+</field-layout>

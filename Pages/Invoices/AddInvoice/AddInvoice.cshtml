@@ -7,39 +7,48 @@
 
       <div class="flex space-x-12 mb-8">
         <div class="flex-none w-72">
-          @Html.EditorFor(m => m.CustomerId, "CustomerSelect", new { autoFocus = true })
+          <field-customer field="CustomerId" auto-focus />
 
           @if (Model.CustomerId != null)
           {
-            <hydro name="CustomerFormInfo" param-id="@Model.CustomerId" key="@Model.CustomerId" />
+            <customer-form-info id="@Model.CustomerId" key="@Model.CustomerId" />
           }
         </div>
         <div class="flex-none w-36">
-          @Html.EditorFor(m => m.IssueDate)
-          @Html.EditorFor(m => m.PaymentTerms)
+          <field-date field="IssueDate" />
+          <field-text field="PaymentTerms" />
         </div>
         <div class="flex-none w-36">
-          @Html.EditorFor(m => m.CurrencyCode, "CurrencySelect")
-          @Html.EditorFor(m => m.DueDate)
+          <field-currency field="CurrencyCode" />
+          <field-date field="DueDate" />
         </div>
         <div class="flex-none w-72">
-          @Html.EditorFor(m => m.Remarks, new { rows = 3 })
+          <field-text field="Remarks" rows="3" />
         </div>
         <div class="flex-none w-72">
-          <partial name="../Common/InvoiceSummary.cshtml" />
+          <invoice-summary
+            currency-code="@Model.CurrencyCode"
+            value-net="@Model.ValueNet"
+            value-tax="@Model.ValueTax"
+            value-gross="@Model.ValueGross"
+            tax-groups="@Model.TaxGroups" />
         </div>
       </div>
 
-      <partial name="../Common/InvoiceLines.cshtml" />
+      <invoice-lines
+        lines="Model.Lines"
+        currency-code="@Model.CurrencyCode"
+        focus-last-line="@Model.FocusLastLine"
+        invoice-actions="Model" />
     </div>
   </div>
   <div class="flex p-4 gap-2">
-    <button class="btn btn-primary" type="submit" hydro-on:click="@(() => Model.Save())">
+    <button class="btn btn-primary" type="submit" on:click="@(() => Model.Save())">
       <span class="loading loading-spinner loading-sm spinner" aria-hidden="true"></span>
       <span>Save changes</span>
     </button>
 
-    <button type="button" class="btn btn-outline-secondary" hydro-on:click="@(() => Model.Back())">
+    <button type="button" class="btn btn-outline-secondary" on:click="@(() => Model.Back())">
       <span class="loading loading-spinner loading-sm spinner" aria-hidden="true"></span>
       Cancel
     </button>

@@ -1,0 +1,38 @@
+@model FieldText
+
+@{
+  var field = Model.Field.GetInfo(Model.ModelState, Model.Label);
+  var value = field.Value ?? "";
+  var rows = Model.Rows ?? 1;
+  var styling = "";
+
+  if (Model.Align == "right")
+  {
+    styling += "text-right";
+  }
+}
+
+<field-layout name="@field.Name" label="@field.Label" error="@field.Error">
+  
+  @if (Model.Rows == null)
+  {
+    <input
+      onfocus="this.select()"
+      name="@field.Name"
+      value="@value"
+      type="text"
+      bind
+      autocomplete="off"
+      x-init="@(Model.AutoFocus ? "$el.focus()" : null)"
+      class="shadow-sm input input-sm input-bordered w-full @(!field.IsValid ? "input-error" : null) @styling" />
+  }
+  else
+  {
+    <textarea 
+    name="@field.Name"
+    bind 
+    class="shadow-sm textarea textarea-bordered w-full @(!field.IsValid ? "input-error" : null) @styling" 
+    rows="@rows">@value</textarea>
+  }
+  
+</field-layout>

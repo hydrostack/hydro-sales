@@ -3,7 +3,7 @@ using HydroSales.Database;
 using HydroSales.Domain;
 using Microsoft.EntityFrameworkCore;
 
-namespace HydroSales.Pages.Shared.EditorTemplates;
+namespace HydroSales.Pages.Shared.Autocompletes;
 
 [ComponentAuthorize]
 public class CustomerSelectList(IDatabase database) : DynamicSelect

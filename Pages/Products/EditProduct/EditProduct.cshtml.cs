@@ -15,21 +15,21 @@ public class EditProduct(IDatabase database) : HydroComponent
 {
     [Required]
     public string Id { get; set; }
-    
+
     public string InitialName { get; set; }
 
     [Display(Name = "Name"), Required, MaxLength(50)]
     public string Name { get; set; }
-    
+
     [Display(Name = "Code"), Required, MaxLength(50)]
     public string Code { get; set; }
-    
-    [Display(Name = "Price"), Required, Range(0, double.PositiveInfinity, MinimumIsExclusive = true)]
+
+    [Display(Name = "Price"), Required, Range(0, double.PositiveInfinity)]
     public decimal PriceNet { get; set; }
 
-    [Display(Name = "Sales tax (%)"), Required, Range(0, 100, MaximumIsExclusive = true)]
+    [Display(Name = "Sales tax (%)"), Required, Range(0, 100)]
     public decimal SalesTax { get; set; }
-    
+
     [Display(Name = "Currency"), Required]
     public string CurrencyCode { get; set; }
 
@@ -67,7 +67,7 @@ public class EditProduct(IDatabase database) : HydroComponent
         Back();
         Dispatch(new ShowMessage("Product has been updated"), Global);
     }
-    
+
     public async Task Remove()
     {
         var product = await database.Query<Product>(Id).SingleAsync();
